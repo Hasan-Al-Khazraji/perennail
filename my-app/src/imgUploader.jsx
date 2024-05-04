@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import axios from 'axios';
-import './imgUploader.css'
+import './imgUploader.css';
+import { imgDb } from './Config';
+import { ref, uploadBytes } from "firebase/storage";
+import { v4 } from 'uuid';
 
 
 export default function ImgUploader()
@@ -22,6 +25,8 @@ export default function ImgUploader()
             alert('Please select a file first!');
             return;
         }
+        const imgRef = ref(imgDb, `files/${v4()}`);
+        uploadBytes(imgRef, file);
         const reader = new FileReader();
         reader.onload = function (e) {
             setUploadedFileURL(reader.result);  // Store the data URL result on load
@@ -31,15 +36,17 @@ export default function ImgUploader()
             alert('Error reading file!');
             setUploadValid(false);
         };
-        reader.readAsDataURL(file);  // Read file as Data URL
+        const dataPoth = reader.readAsDataURL(file);  // Read file as Data URL
+        console.log(dataPoth);
+        console.log(uploadedFileURL);
     }
 
     return(
         <div className="main">
-            <div className="imgDisplay">
+            <div className="imgDisplay" style={{minWidth: '30vmax', minHeight: '25vmax'}}>
                 {
                     uploadValid && uploadedFileURL
-                    ? <img src={uploadedFileURL} alt="YOUR IMAGE HERE" />
+                    ? <img src={uploadedFileURL} alt="YOUR IMAGE HERE" style={{ maxWidth: '500px', maxHeight: '400px' }}/>
                     : <div className="plantFeels">
                             <svg fill="#00dd9e" height="85%" width="85%" version="1.1" id="Capa_1" viewBox="0 0 473.044 473.044">
                                 <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
@@ -57,7 +64,6 @@ export default function ImgUploader()
                     <input type="file" onChange={handleChange}/>
                     <button type="submit">Upload</button>
                 </form>
-                {uploadedFileURL && <img src={uploadedFileURL} alt="Uploaded content"/>}
             </div>
         </div>
     );
