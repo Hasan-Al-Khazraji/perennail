@@ -7,7 +7,6 @@ export default function ImgUploader()
 {
     const [uploadValid, setUploadValid] = useState(false);
     const [file, setFile] = useState(null);
-    const [uploadProgress, setUploadProgress] = useState(0);
     const [uploadedFileURL, setUploadedFileURL] = useState(null)
 
     function handleChange(event)
@@ -23,36 +22,23 @@ export default function ImgUploader()
             alert('Please select a file first!');
             return;
         }
-        const url = 'http://localhost:3000/uploadFile';
-        const formData = new FormData();
-        formData.append('file', file);
-        formData.append('fileName', file.name);
-        const config = {
-            headers: {
-                'content-type' : 'multipart/form-data',
-            },
-            onUploadProgress: function(progressEvent) {
-                const percentCompleted = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-                setUploadProgress(percentCompleted);
-              }
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            setUploadedFileURL(reader.result);  // Store the data URL result on load
+            setUploadValid(true);
         };
-        axios.post(url, formData, config)
-            .then((response) => {
-                setUploadedFileURL(response.data.fileUrl);
-                setUploadValid(true);
-            })
-            .catch(error => {
-                console.error('Upload failed:', error);
-                setUploadValid(false);
-                alert('Upload failed, please try again.');
-            });
+        reader.onerror = function () {
+            alert('Error reading file!');
+            setUploadValid(false);
+        };
+        reader.readAsDataURL(file);  // Read file as Data URL
     }
 
     return(
         <div className="main">
             <div className="imgDisplay">
                 {
-                    uploadValid
+                    uploadValid && uploadedFileURL
                     ? <img src={uploadedFileURL} alt="YOUR IMAGE HERE" />
                     : <div className="plantFeels">
                             <svg fill="#00dd9e" height="85%" width="85%" version="1.1" id="Capa_1" viewBox="0 0 473.044 473.044">
@@ -70,7 +56,6 @@ export default function ImgUploader()
                 <form onSubmit={handleSubmit}>
                     <input type="file" onChange={handleChange}/>
                     <button type="submit">Upload</button>
-                    <progress value={uploadProgress} max="100"></progress>
                 </form>
                 {uploadedFileURL && <img src={uploadedFileURL} alt="Uploaded content"/>}
             </div>
