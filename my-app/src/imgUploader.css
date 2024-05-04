@@ -1,0 +1,51 @@
+progress {
+    border-radius: 2px; 
+    width: 20%;
+    height: 10px;
+    box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 );
+  }
+  progress::-webkit-progress-bar {
+    background-color: rgb(13, 204, 29);
+    border-radius: 7px;
+  }
+
+.plantFeels
+{
+    background: repeating-linear-gradient(45deg, #35353a, #35353a 20px, #000000 20px, #000000 30px);
+    display: grid;
+    width: 500px;
+    height: 400px;
+    background-color: rgb(175, 163, 147);
+    border-style: dashed;
+    border-radius: 10%;
+    justify-items: center;
+    padding-top: 5%;
+}
+.plantFeelsText
+{
+    grid-row-start: 7;
+    grid-row-end: 7;
+    width: auto;
+    height: auto;
+    color: white;
+    font-family: Helvetica, sans-serif;
+    font-size: larger;
+}
+#Capa_1
+{
+    grid-row-start: 1;
+    grid-row-end: 6;
+}
+
+.uploadFile + label {
+    font-size: 1.25em;
+    font-weight: 700;
+    color: white;
+    background-color: black;
+    display: inline-block;
+}
+
+.uploadFile:focus + label,
+.uploadFile + label:hover {
+    background-color: red;
+}
