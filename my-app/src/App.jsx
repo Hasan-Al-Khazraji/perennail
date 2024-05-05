@@ -1,4 +1,4 @@
-import {useState, useRef} from 'react';
+import {useState, useRef, useEffect} from 'react';
 
 import ImgUploader from './imgUploader';
 
@@ -33,13 +33,13 @@ function SignIn()
         }
 
         return(
-            <button className='sign-in' onClick={signInWithGoogle}>Sign In With Google</button>
+            <button className='sign-out transition ease-in-out duration-250 bg-primary p-3 rounded-xl font-abc font-bold drop-shadow-lg hover:scale-105 hover:bg-red-500' onClick={signInWithGoogle}>Sign In With Google</button>
         );
     }
 
     function SignOut(){
         return auth.currentUser && (
-            <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
+            <button className="sign-out transition ease-in-out duration-250 bg-primary p-3 rounded-xl font-abc font-bold drop-shadow-lg hover:scale-105 hover:bg-red-500" onClick={() => auth.signOut()}>Sign Out</button>
         )
     }
 
@@ -71,16 +71,28 @@ function ChatBox()
 
     return(
         <>
-            <SignOut/>
                 <div className='messages-container'>
                     {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
                     <div ref={dummy}></div>
                 </div>
 
             <form onSubmit={sendMessage}>
-                <input value={formValue} onChange={(e) => setFormValue(e.target.value)}/>
-                <button type='submit'>Send</button>
+                <div className='bg-slate-900 rounded-lg p-3 mb-12 ml-10 mr-14'>
+                    <input className="bg-slate-900 text-stone-50 pr-96" value={formValue} placeholder="Ask Plumi..." onChange={(e) => setFormValue(e.target.value)}/>
+                    <button type='submit'>
+                        <div className='scale-150 ml-5 pt-2'>
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="white" className="w-6 h-6 pt-1">
+                                <path strokeLinecap="round" strokeLinejoin="round" d="m15 11.25-3-3m0 0-3 3m3-3v7.5M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+                            </svg>
+                        </div>
+                    </button>
+                </div>
+                
             </form>
+            <div className='grid grid-cols-3 items-center'>
+                <p className='font-abc col-start-1 col-end-1 font-bold'>Taking care of others, is the best way to take care of onself! You got this!</p>
+                <SignOut className="col-start-3 col-end-3"/>
+            </div>
         </>
     )
 }
@@ -115,19 +127,36 @@ function App()
 
     const [user] = useAuthState(auth);
 
+    const [plumiTalk, setPlumiTalk] = useState("Welcome to Perennail!\n I'm Plumi, please upload an image or describe how well you work with routines!");
+
+    useEffect(() => {
+        fetch("/members").then(
+            res => res.json()
+        ).then(
+            data => {
+                setPlumiTalk(data)
+            }
+        )
+    }, [])
+
     return(
         <div>
-            <span style={{maxHeight:'120px', display:"flex"}}>
-                <img style={{maxHeight:'120px', maxWidth:'720px'}} src="https://cdn.discordapp.com/attachments/656957416297988096/1236405752646729818/Typeface.png?ex=6637e416&is=66369296&hm=9ddd731e289981058111cf552aeecdb80784afb34a380012199d72335c0107d1&"/>
-                <h3>Get help from Plumi the Plant!</h3>
+            <div class="absolute inset-0 -z-10 h-full w-full bg-slate-950 bg-[linear-gradient(to_right,#242424_1px,transparent_1px),linear-gradient(to_bottom,#242424_1px,transparent_1px)] bg-[size:6rem_4rem]"><div class="absolute bottom-0 left-0 right-0 top-0 bg-[radial-gradient(circle_500px_at_50%_200px,#00dd9e,transparent)]"></div></div>
+            <span className='h-24 grid grid-cols-6 gap-0 p-5 pt-7'>
+                <img className="drop-shadow-3xl col-start-1 col-end-1" style={{maxHeight:'32px', maxWidth:'192px'}} src="https://cdn.discordapp.com/attachments/656957416297988096/1236405752646729818/Typeface.png?ex=6637e416&is=66369296&hm=9ddd731e289981058111cf552aeecdb80784afb34a380012199d72335c0107d1&"/>
+                <div className='col-start-6 col-end-6'>
+                    <h3 className=' mt-1 font-abc font-extrabold text-primary'>Plumi the AI Plant...</h3>
+                </div>
+                
             </span>
-        <div className="page">
-            <div className="leftSide">
+        <div className="flex flex-1">
+            <div className="w-1/3 p-4">
                 <ImgUploader/>
             </div>
-            <div className="rightSide">
+            <div className="flex-1 p-4">
                 <section>
-                    {user ? <ChatBox /> : <SignIn/>}
+                    {user ? <ChatBox /> 
+                    : <div className='flex justify-center items-center h-full'><SignIn/></div>}
                 </section>
             </div>
         </div>
