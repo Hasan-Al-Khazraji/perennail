@@ -12,6 +12,7 @@
   "dependencies": {
     "@tensorflow/tfjs": "^4.19.0",
     "firebase": "^10.11.1",
+    "react-firebase-hooks": "^5.1.1",
     "uuid": "^9.0.1"
   }
 }

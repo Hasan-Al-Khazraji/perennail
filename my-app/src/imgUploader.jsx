@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import axios from 'axios';
 import './imgUploader.css';
 import { imgDb } from './Config';
 import { ref, uploadBytes } from "firebase/storage";
