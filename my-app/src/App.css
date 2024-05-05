@@ -18,3 +18,7 @@
     grid-column-end: 10;
     border-style: dotted;
 }
+.messages-container {
+    max-height: 500px; /* Adjust the height as needed */
+    overflow-y: auto;  /* Enables vertical scrolling */
+}

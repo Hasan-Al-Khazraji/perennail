@@ -72,10 +72,10 @@ function ChatBox()
     return(
         <>
             <SignOut/>
-            <div>
-                {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
-                <div ref={dummy}></div>
-            </div>
+                <div className='messages-container'>
+                    {messages && messages.map(msg => <ChatMessage key={msg.id} message={msg} />)}
+                    <div ref={dummy}></div>
+                </div>
 
             <form onSubmit={sendMessage}>
                 <input value={formValue} onChange={(e) => setFormValue(e.target.value)}/>
