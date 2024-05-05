@@ -91,12 +91,22 @@ function ChatMessage(props)
 
     const messageClass = uid === auth.currentUser.uid ? 'sent' : 'received';
 
+    const defaultPhotoURL = "https://cdn.discordapp.com/attachments/656957416297988096/1236496842670473256/Logo.png?ex=663838ec&is=6636e76c&hm=3f8cd470e3aee15b9fad9f550ab3045827d30588e527b04c5292bd041c236b55&"
 
     return(
-        <div className={`message ${messageClass}`}>
-            <img src={photoURL} alt="User Photo" />
-            <p>{text}</p>
+        <div className={`message ${messageClass} overflow-auto`}>
+            <div className="transition duration-250 ease-in-out box-border min-h-32 p-4 mx-10 my-3 border-4 bg-green-200 border-black rounded-3xl flex items-center shadow-lg hover:scale-105">
+                <div className='bg-orange-100 rounded-full drop-shadow-md h-20 w-20 flex justify-center items-center border-slate-950 border-4 flex-shrink-0'>
+                    <img src={photoURL || defaultPhotoURL} alt="User Photo" className='h-16 w-16 rounded-full border-solid drop-shadow-lg'/>
+                </div>
+                <div className='ml-3 flex-1 max-w-full md:max-w-[calc(100%-5rem)]'>
+                    <div className="font-sans font-extrabold font-abc text-lg">{photoURL ? <p>You</p> : <p>Plumi</p>}</div>
+                    <p className='font-abc font-light whitespace-pre-wrap break-words text-sm'>{text}</p>
+                </div>
+            </div>
         </div>
+            
+        
     )
 }
 
