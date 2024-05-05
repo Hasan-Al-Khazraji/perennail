@@ -84,6 +84,8 @@ def receive():
         messages.document(msg_name).set({
             'createdAt' : firestore.SERVER_TIMESTAMP,
             'text' : plumiResponse})
+        
+        quit()
 
     def math():
         msg_list = get_latest_message()
