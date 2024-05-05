@@ -1,0 +1,10 @@
+python 3.10
+    python3.10 -m venv myenv
+        myenv\Scripts\activate.bat
+
+pip install tensorflow==2.12
+pip install pillow
+pip install firebase-admin
+pip install pyrebase4
+pip install firebase-admin google-cloud-storage
+pip install google-generativeai
