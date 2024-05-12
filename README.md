@@ -1,8 +1,8 @@
 # Welcome to [PerennAI.l](https://drive.google.com/file/d/1Ql_9tgLplD0mfIDXz2Jc5YI31Y0Gt1jQ/view?usp=drive_link) 🌱!
 A **GDSC Hacks** Project By:
-Hasan Al-Khazraji
-Timothy Khan
-Daniela Ramirez
+- Hasan Al-Khazraji
+- Timothy Khan
+- Daniela Ramirez
 
 ## Inspiration 💡
 During COVID, all 3 of our team members had plants in their rooms that slowly withered away over time as our mental health declined during quarantine. **PerennAI.L** aims to solve this problem and allow you to not only keep your plants healthy but your mental at the same time!
