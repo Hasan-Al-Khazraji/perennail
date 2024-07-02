@@ -57,7 +57,7 @@ Future developments of **PerennAI.L** include further user login features. Such 
 - [**GitHub Repo**](https://github.com/Hasan-Al-Khazraji/perennail)
 
 ## Sample Screenshots:
-![Landing Page](https://cdn.discordapp.com/attachments/656957416297988096/1239349914799177829/image.png?ex=66429a0d&is=6641488d&hm=36dac2aa99ab4676cc71bde8114129dcf90e389f23aa515c14038cd0df52596c&)
+![Landing Page](https://github.com/Hasan-Al-Khazraji/perennail/assets/37431365/1e744a2b-3db7-4f63-ac12-f4cce1c593b0)
 
-![Plumi Question Mode](https://cdn.discordapp.com/attachments/656957416297988096/1239350005563916329/image.png?ex=66429a23&is=664148a3&hm=e65e1b50166520f572d0c4070b4ad643b881d12eea757a9df37d5dff38d9526e&)
-![Plumi Plant Analysis Mode](https://cdn.discordapp.com/attachments/656957416297988096/1239350085045981315/image.png?ex=66429a36&is=664148b6&hm=49706dd61893865ffd6e73d8379347d115ffcc2bef64908e387a7b7b84532966&)
+![Plumi Question Mode](https://github.com/Hasan-Al-Khazraji/perennail/assets/37431365/fdcb49fd-2aba-49ac-9499-670f359fd602)
+![Plumi Plant Analysis Mode](https://github.com/Hasan-Al-Khazraji/perennail/assets/37431365/f18c9721-d9bb-405b-a15b-f4b4ce135e78)
